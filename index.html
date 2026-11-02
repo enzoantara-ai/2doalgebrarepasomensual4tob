@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reto del Cuaderno · Álgebra 2.º de Secundaria</title>
+<style>
+:root{--paper:#f7f9fc;--grid:#d3e2f5;--ink:#1d2b53;--mut:#58648a;--card:#ffffff;--hl:#ffe066;--red:#d6454b;--ok:#1b8a4b;--okbg:#dcf5e6;--badbg:#fde3e4;--line:#b9c9e6}
+@media (prefers-color-scheme:dark){:root{--paper:#0f1830;--grid:#1b2a4d;--ink:#e8eefc;--mut:#9fb0d8;--card:#16213f;--hl:#ffd23f;--red:#ff7b80;--ok:#5fd68f;--okbg:#14382a;--badbg:#45202a;--line:#2d3f6b}}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;min-height:100vh;color:var(--ink);font:17px/1.55 "Trebuchet MS","Segoe UI",system-ui,sans-serif;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:28px 28px;padding:18px 12px 40px}
+.sheet{max-width:680px;margin:0 auto;background:var(--card);border:2px solid var(--line);border-radius:6px;padding:26px 24px 28px 52px;position:relative;box-shadow:6px 6px 0 var(--line)}
+.sheet::before{content:"";position:absolute;left:34px;top:0;bottom:0;width:2px;background:var(--red);opacity:.75}
+h1{font-size:1.9rem;line-height:1.15;margin:0 0 6px}
+h1 mark{background:var(--hl);color:#1d2b53;padding:0 .25em;border-radius:3px}
+h2{font-size:1.2rem;margin:22px 0 8px}
+p{margin:8px 0}
+.mut{color:var(--mut);font-size:.93rem}
+[hidden]{display:none!important}
+.steps{margin:10px 0;padding-left:1.2em}
+.steps li{margin:6px 0}
+details{margin:14px 0;border:2px dashed var(--line);border-radius:8px;padding:8px 14px}
+summary{cursor:pointer;font-weight:700}
+input[type=text]{font:inherit;color:var(--ink);background:transparent;border:0;border-bottom:2px solid var(--line);padding:6px 2px;width:100%;max-width:340px}
+label{display:block;margin-top:14px;font-weight:700}
+.btn{font:inherit;font-weight:700;background:var(--ink);color:var(--paper);border:0;border-radius:8px;padding:12px 22px;margin:14px 10px 0 0;cursor:pointer}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+.btn:hover{filter:brightness(1.15)}
+button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+.top{display:flex;justify-content:space-between;gap:10px;font-size:.93rem;color:var(--mut)}
+.dots{display:flex;gap:5px;margin:8px 0 16px}
+.dots i{flex:1;height:9px;border-radius:5px;background:var(--grid);border:1px solid var(--line)}
+.dots i.now{background:var(--hl)}.dots i.ok{background:var(--ok);border-color:var(--ok)}.dots i.bad{background:var(--red);border-color:var(--red)}
+.lvl{display:inline-block;background:var(--hl);color:#1d2b53;font-weight:700;font-size:.85rem;padding:2px 10px;border-radius:12px}
+.q{font-size:1.15rem;font-weight:700;margin:12px 0 4px}
+.eq{font-size:1.7rem;font-weight:700;margin:8px 0 10px;overflow-x:auto;white-space:nowrap}
+.opt{display:block;width:100%;text-align:left;font:inherit;font-size:1.08rem;color:var(--ink);background:transparent;border:2px solid var(--line);border-radius:10px;padding:12px 14px;margin:9px 0;cursor:pointer}
+.opt:hover:not(:disabled){border-color:var(--ink);background:var(--grid)}
+.opt:disabled{cursor:default}
+.opt.ok{border-color:var(--ok);background:var(--okbg)}
+.opt.bad{border-color:var(--red);background:var(--badbg)}
+.hint{margin:10px 0;padding:8px 12px;border-left:4px solid var(--hl);background:var(--grid);border-radius:4px}
+.fb{margin-top:14px;padding:12px 14px;border-radius:8px;background:var(--grid)}
+.big{font-size:3.4rem;line-height:1;margin:6px 0}
+.sol{border-top:2px dashed var(--line);padding:12px 0}
+.sol b.t-ok{color:var(--ok)}.sol b.t-bad{color:var(--red)}
+.cert{display:inline-block;margin-top:6px;padding:4px 10px;border:2px solid var(--ink);border-radius:6px;font-weight:700}
+@media (max-width:480px){.sheet{padding:20px 14px 24px 40px}.sheet::before{left:26px}.eq{font-size:1.35rem}h1{font-size:1.6rem}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<main class="sheet">
+
+<section id="start">
+  <h1>Reto del <mark>Cuaderno</mark></h1>
+  <p>Álgebra · 2.º de Secundaria. 10 ejercicios de radicales dobles, funciones y ecuaciones. Puedes jugar todas las veces que quieras.</p>
+
+  <h2>¿Cómo se juega?</h2>
+  <ol class="steps">
+    <li><b>Prepara tu cuaderno y tu lápiz.</b> Este juego se gana resolviendo, no adivinando.</li>
+    <li><b>Lee el ejercicio y resuélvelo en tu cuaderno</b> con todo el procedimiento. Cuando tengas tu resultado, búscalo entre las 4 opciones.</li>
+    <li><b>Toca tu respuesta.</b> Verás al instante si acertaste y una explicación paso a paso para comparar con tu cuaderno.</li>
+    <li><b>Puntos:</b> 10 por acertar sin ayuda, 5 si usaste la pista y 0 si fallas.</li>
+    <li><b>Al final</b> aparece tu puntaje, una medalla y el <b>solucionario completo</b> con las 10 respuestas.</li>
+  </ol>
+  <p class="mut">Los ejercicios van de menos a más: 7 de calentamiento, 2 intermedios y 1 reto final. Las opciones cambian de lugar cada vez que juegas.</p>
+
+  <details>
+    <summary>Dinámica en equipo (opcional)</summary>
+    <ol class="steps">
+      <li>Formen parejas. Una computadora, dos cuadernos.</li>
+      <li>En cada pregunta, <b>los dos resuelven en silencio</b> en su cuaderno.</li>
+      <li>Comparen resultados. Si no coinciden, cada uno explica su procedimiento al otro. Luego eligen una sola respuesta.</li>
+      <li>Se turnan: en las preguntas impares toca la pantalla uno, en las pares el otro.</li>
+      <li>Al terminar, revisen el solucionario y marquen en el cuaderno dónde se equivocaron. Jueguen otra vez para mejorar su puntaje.</li>
+    </ol>
+  </details>
+
+  <label for="name">Tu nombre (opcional)</label>
+  <input id="name" type="text" maxlength="40" autocomplete="off">
+  <p class="mut" id="best"></p>
+  <button class="btn" id="go">Empezar el reto</button>
+</section>
+
+<section id="game" hidden>
+  <div class="top"><span id="count"></span><span id="score"></span></div>
+  <div class="dots" id="dots" aria-hidden="true"></div>
+  <span class="lvl" id="lvl"></span>
+  <div class="q" id="q"></div>
+  <div class="eq" id="eq" hidden></div>
+  <div id="opts"></div>
+  <button class="btn alt" id="hbtn">Ver pista (vale 5 puntos)</button>
+  <div class="hint" id="hint" hidden></div>
+  <div class="fb" id="fb" hidden></div>
+  <button class="btn" id="next" hidden>Siguiente</button>
+</section>
+
+<section id="end" hidden>
+  <div class="big" id="medal"></div>
+  <h1 id="final"></h1>
+  <p id="msg"></p>
+  <span class="cert" id="cert"></span>
+  <div>
+    <button class="btn" id="again">Jugar otra vez</button>
+  </div>
+  <h2>Solucionario</h2>
+  <p class="mut">Compara cada respuesta con tu cuaderno. Si fallaste una, vuelve a resolverla antes de jugar de nuevo.</p>
+  <div id="sol"></div>
+</section>
+
+</main>
+<script>
+const Q=[
+{l:0,q:"Transforma a radicales simples:",eq:"√(7 + 2√10)",o:["√5 + √2","√7 + √10","7 + √10","√5 − √2"],a:0,h:"Busca dos números que sumen 7 y cuyo producto sea 10.",e:"Suman 7 y multiplican 10: son 5 y 2. Entonces √(7 + 2√10) = √5 + √2."},
+{l:0,q:"Calcula:",eq:"√(6 − 2√5) + 1",o:["√5","√6","5","1"],a:0,h:"Busca dos números que sumen 6 y cuyo producto sea 5.",e:"Suman 6 y multiplican 5: son 5 y 1. Como es resta, √(6 − 2√5) = √5 − 1. Luego (√5 − 1) + 1 = √5."},
+{l:0,q:"Si (x + 2 ; 9) = (7 ; y − 1), ¿cuánto vale x + y?",o:["5","12","15","10"],a:2,h:"Dos pares son iguales si coinciden componente a componente.",e:"x + 2 = 7 → x = 5. y − 1 = 9 → y = 10. Entonces x + y = 15."},
+{l:0,q:"Dada R = {(1; 5), (2; 7), (3; 5), (4; 9)}, ¿cuáles son su dominio y su rango?",o:["Dom = {1; 2; 3; 4} y Ran = {5; 7; 9}","Dom = {5; 7; 9} y Ran = {1; 2; 3; 4}","Dom = {1; 2; 3; 4} y Ran = {5; 5; 7; 9}","Dom = {1; 2; 3; 4; 5; 7; 9} y Ran = {5; 7; 9}"],a:0,h:"El dominio son las primeras componentes; el rango, las segundas, sin repetir.",e:"Dominio: 1, 2, 3, 4. Rango: 5, 7, 9 (el 5 se escribe una sola vez)."},
+{l:0,q:"Sofía dice: «{(1; 7), (2; 7), (3; 7)} no es función porque el 7 se repite». ¿Qué le respondes?",o:["Tienes razón: en una función no se puede repetir nada.","Te equivocas: es función porque ninguna primera componente se repite.","Te equivocas: no es función porque tiene tres pares.","Tienes razón: el 7 aparece tres veces."],a:1,h:"Fíjate en qué componente no puede repetirse en una función: ¿la primera o la segunda?",e:"Las primeras componentes (1, 2, 3) son todas distintas, así que es función. Que el 7 se repita como segunda componente no importa: es una función constante."},
+{l:0,q:"Resuelve:",eq:"x/2 + x/3 = 10",o:["6","12","15","24"],a:1,h:"El MCM de 2 y 3 es 6. Multiplica toda la ecuación por 6.",e:"MCM = 6 → 3x + 2x = 60 → 5x = 60 → x = 12."},
+{l:0,q:"¿Cuántas soluciones tiene esta ecuación?",eq:"4(x + 1) = 4x + 4",o:["Una","Ninguna","Infinitas","Solo x = 0"],a:2,h:"Desarrolla el paréntesis y reduce.",e:"Al desarrollar queda 4x + 4 = 4x + 4, o sea 0x = 0, que se cumple para cualquier x. Tiene infinitas soluciones."},
+{l:1,q:"Sea f(x) = 2x + 1 si x < 3, y f(x) = x² − 4 si x ≥ 3. ¿Cuánto vale f(2) + f(4)?",o:["13","15","17","21"],a:2,h:"Primero decide qué regla usar: ¿2 < 3? ¿4 ≥ 3?",e:"Como 2 < 3: f(2) = 2·2 + 1 = 5. Como 4 ≥ 3: f(4) = 4² − 4 = 12. Suma: 5 + 12 = 17."},
+{l:1,q:"Resuelve:",eq:"(x + 3)/2 − (x − 1)/4 = 3",o:["7","9","5","3"],a:2,h:"MCM = 4. Cuidado con el signo menos delante del segundo paréntesis.",e:"2(x + 3) − (x − 1) = 12 → 2x + 6 − x + 1 = 12 → x + 7 = 12 → x = 5."},
+{l:2,q:"Calcula el valor de:",eq:"(√(8 + 2√12) − √6) / √2",o:["√2","2","1","0"],a:2,h:"Primero transforma √(8 + 2√12): busca dos números que sumen 8 y multipliquen 12.",e:"Suman 8 y multiplican 12: son 6 y 2, así √(8 + 2√12) = √6 + √2. Restamos √6 y queda √2. Entonces √2 / √2 = 1."}
+];
+const LV=["Calentamiento","Intermedio","Reto final"];
+const $=id=>document.getElementById(id);
+const shuffle=a=>{a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]]}return a};
+const show=id=>["start","game","end"].forEach(s=>$(s).hidden=s!==id);
+let i,score,locked,usedHint,log,name="";
+const getBest=()=>{try{return +localStorage.getItem("retoCuaderno")||0}catch(e){return 0}};
+const setBest=v=>{try{localStorage.setItem("retoCuaderno",v)}catch(e){}};
+function bestTxt(){const b=getBest();$("best").textContent=b?"Tu mejor puntaje en este equipo: "+b+" / 100":""}
+function start(){name=$("name").value.trim();i=0;score=0;log=[];show("game");render();window.scrollTo(0,0)}
+function dots(){const d=$("dots");d.innerHTML="";Q.forEach((_,k)=>{const x=document.createElement("i");x.className=k<log.length?(log[k].pts?"ok":"bad"):k===i?"now":"";d.appendChild(x)})}
+function render(){
+  const d=Q[i];locked=false;usedHint=false;
+  $("count").textContent="Ejercicio "+(i+1)+" de "+Q.length;
+  $("score").textContent=score+" puntos";
+  $("lvl").textContent=LV[d.l];
+  $("q").textContent=d.q;
+  $("eq").hidden=!d.eq;$("eq").textContent=d.eq||"";
+  $("hint").hidden=true;$("fb").hidden=true;$("next").hidden=true;
+  $("hbtn").hidden=false;$("hbtn").disabled=false;
+  $("opts").innerHTML="";
+  shuffle(d.o.map((t,k)=>({t,ok:k===d.a}))).forEach(op=>{
+    const b=document.createElement("button");b.className="opt";b.textContent=op.t;b.dataset.ok=op.ok;
+    b.onclick=()=>pick(b,op);$("opts").appendChild(b)});
+  dots();
+}
+function pick(b,op){
+  if(locked)return;locked=true;
+  const d=Q[i];
+  document.querySelectorAll(".opt").forEach(x=>{x.disabled=true;if(x.dataset.ok==="true")x.classList.add("ok")});
+  let pts=0;
+  if(op.ok){pts=usedHint?5:10;score+=pts}else b.classList.add("bad");
+  log.push({pts,chosen:op.t,hint:usedHint});
+  $("score").textContent=score+" puntos";
+  $("fb").textContent=(op.ok?"¡Correcto! +"+pts+" puntos. ":"Casi. Mira cómo se resuelve: ")+d.e;
+  $("fb").hidden=false;$("hbtn").hidden=true;$("hint").hidden=true;
+  $("next").textContent=i===Q.length-1?"Ver mi resultado":"Siguiente";
+  $("next").hidden=false;$("next").focus();dots();
+}
+function next(){i++;i<Q.length?render():finish()}
+function finish(){
+  if(score>getBest())setBest(score);
+  const m=score===100?["🏆","¡Cuaderno perfecto!","Resolviste todo sin ayuda. Ya puedes explicarle estos temas a un compañero."]:
+    score>=70?["🥈","¡Muy bien!","Vas por buen camino. Revisa el solucionario, corrige tus errores en el cuaderno y vuelve a jugar."]:
+    score>=40?["🥉","Buen avance","Ya dominas parte del tema. Lee las explicaciones de lo que fallaste, repásalas y juega otra vez."]:
+    ["💪","¡Sigue intentando!","Repasa tu ficha y tus apuntes, y vuelve a jugar. Cada intento te enseña algo."];
+  $("medal").textContent=m[0];$("final").textContent=score+" / 100 · "+m[1];$("msg").textContent=m[2];
+  $("cert").textContent=(name||"Estudiante")+" · "+score+" puntos · "+new Date().toLocaleDateString("es-PE");
+  const s=$("sol");s.innerHTML="";
+  Q.forEach((d,k)=>{
+    const r=log[k],box=document.createElement("div");box.className="sol";
+    const t=document.createElement("div");
+    const tag=document.createElement("b");tag.className=r.pts?"t-ok":"t-bad";tag.textContent=r.pts?"✔ ":"✘ ";
+    t.appendChild(tag);t.appendChild(document.createTextNode((k+1)+". "+d.q+(d.eq?"  "+d.eq:"")));
+    const a=document.createElement("div");a.innerHTML="<b>Respuesta: </b>";a.appendChild(document.createTextNode(d.o[d.a]));
+    const you=document.createElement("div");you.className="mut";you.textContent=r.pts?"Acertaste"+(r.hint?" (con pista)":"")+".":"Tu respuesta fue: "+r.chosen;
+    const e=document.createElement("div");e.textContent=d.e;
+    [t,a,you,e].forEach(n=>box.appendChild(n));s.appendChild(box);
+  });
+  show("end");window.scrollTo(0,0);
+}
+$("go").onclick=start;$("again").onclick=()=>{show("start");bestTxt()};
+$("next").onclick=next;
+$("hbtn").onclick=()=>{if(locked)return;usedHint=true;$("hint").textContent="Pista: "+Q[i].h;$("hint").hidden=false;$("hbtn").disabled=true};
+bestTxt();
+</script>
+</body>
+</html>
